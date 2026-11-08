@@ -659,7 +659,7 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
                                 backgroundColor:
                                     tx.type == EntryType.expense ? Colors.red.withAlpha(35) : Colors.green.withAlpha(35),
                                 child: Icon(
-                                  tx.type == EntryType.expense ? Icons.outgoing_mail : Icons.incoming_mail,
+                                  tx.type == EntryType.expense ? Icons.outgoing_mail : Icons.call_received,
                                   color: tx.type == EntryType.expense ? Colors.red : Colors.green,
                                 ),
                               ),
@@ -814,7 +814,11 @@ class ReportsScreen extends StatelessWidget {
       categorySummary[tx.category] = (categorySummary[tx.category] ?? 0) + tx.amount;
     }
 
-    final topCategory = categorySummary.entries.isEmpty ? null : categorySummary.entries.toList()..sort((a,b)=>b.value.compareTo(a.value));
+    final topCategory = categorySummary.entries.isEmpty
+    ? null
+    : (categorySummary.entries.toList()
+      ..sort((a, b) => b.value.compareTo(a.value)));
+
 
     return Scaffold(
       appBar: AppBar(title: const Text('التقارير')),
